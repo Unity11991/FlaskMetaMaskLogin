@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Seed Map</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+</head>
+<body>
+  <div id="map" style="height: 600px;"></div>
+<script>
+  // Create a map instance and specify the coordinates for the map center
+  var map = L.map('map').setView([23.3441, 85.3096], 10);
+
+  // Add a tile layer to the map using a free tile provider
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors',
+    maxZoom: 18,
+  }).addTo(map);
+
+    // Define a custom icon for the marker
+  var seedIcon = L.icon({
+    iconUrl: 'static/seed-icon.png', // Replace with the path to your seed image
+    iconSize: [32, 32], // Adjust the size of the seed image
+    iconAnchor: [16, 32], // Adjust the anchor point of the seed image
+  });
+
+  // Add a marker when the map is clicked
+  map.on('click', function (event) {
+    var marker = L.marker(event.latlng, { icon: seedIcon }).addTo(map);
+  });
+</script>
+
+
+</body>
+</html>
